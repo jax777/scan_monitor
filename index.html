@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" /> 
+  <link rel="stylesheet" href="static/css/bootstrap-table.css" /> 
+  <script src="static/js/jquery.min.js"></script> 
+  <script src="static/js/jquery.form.js"></script> 
+  <script src="static/js/bootstrap.min.js"></script> 
+  <script src="static/js/bootstrap-table.js"></script> 
+  <script src="static/js/bootstrap-table-editable.js"></script> 
+  <script src="static/js/bootstrap-table-export.js"></script> 
+  <script src="static/js/bootstrap-editable.js"></script> 
+  <script src="static/js/tableExport.js"></script> 
+  <script src="static/js/mainview.js"></script> 
+ </head> 
+ <body> 
+  <!-- Static navbar --> 
+  <div class="navbar navbar-default"> 
+   <div class="container"> 
+    <div class="navbar-header"> 
+     <a class="navbar-brand" href="/">业务持续监控 Dashboard</a> 
+    </div>
+    <div>
+     <ul class="nav navbar-right"> 
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> select target <b class="caret"></b> </a> 
+       <ul class="dropdown-menu" id="select_target">
+       </ul> </li> 
+     </ul> 
+    </div>
+    <div>
+     <ul class="nav navbar-right">
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> domains <b class="caret"></b> </a>
+       <ul class="dropdown-menu" id="added_domains">
+       </ul> </li>
+     </ul>
+    </div>
+    <div>
+     <ul class="nav navbar-right">
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> scan action <b class="caret"></b> </a>
+       <ul class="dropdown-menu">
+        <li  onclick="click_action(this)" type="/autoscan"><a>autoscan</a></li>
+        <li  onclick="click_action(this)" type="/start_sub_domain"><a>获取子域名</a></li>
+        <li  onclick="click_action(this)" type="/listip"><a>更新ip列表</a></li>
+        <li  onclick="click_action(this)" type="/start_scan"><a>开启扫描</a></li>
+        <li  onclick="click_action(this)" type="/scan_again"><a>再次扫描</a></li>
+       </ul> </li>
+     </ul>
+    </div>
+    <form id="add-target-form" class="navbar-form navbar-right" action="/add_target"> 
+     <div class="form-group"> 
+      <input type="text" placeholder="目标名" name="target" class="form-control" style="width: 100px" value="" /> 
+     </div> 
+     <button id="add-target-form-Submit" class="btn btn-default">添加</button> 
+    </form>
+    <form id="add-domain-form" class="navbar-form navbar-right" action="/add_domain">
+     <div class="form-group">
+      <input type="text" placeholder="域名" name="domain" class="form-control" style="width: 100px" value="" />
+     </div>
+     <button id="add-domain-form-Submit" class="btn btn-default">添加</button>
+    </form>
+   </div> 
+   <div class="progress">
+  <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+</div>
+  </div> 
+<div class="col-sm-3">
+    <div class="nav nav-pills nav-stacked " role="tablist"> 
+     <li class="active" onclick="clicknav(this)" type="0"><a>目标ip列表</a></li> 
+     <li onclick="clicknav(this)" type="1"><a>端口分布情况、按ip</a></li> 
+     <li onclick="clicknav(this)" type="2"><a>按类型分类服务信息</a></li> 
+     <li onclick="clicknav(this)" type="3"><a>http服务信息</a></li>
+     <li onclick="clicknav(this)" type="4"><a>http敏感目录</a></li>
+     <li onclick="clicknav(this)" type="5"><a>port vul信息</a></li>
+    </div> 
+   </div> 
+   <div class="col-sm-9" type="inittable"> 
+    <table id="table"> 
+    </table> 
+   </div> 
+  </div> 
+  <script>
+	
+	
+    $('#add-target-form').submit(function() {  
+    $(this).ajaxSubmit(function() {     
+		setTimeout("init_select_target()","2000")
+    });  
+    return false; //阻止表单默认提交  
+	});  
+
+	$('#add-domain-form').submit(function() {
+    $(this).ajaxSubmit(function() {
+		setTimeout("init_added_domains()","2000");
+    });
+    return false; //阻止表单默认提交
+	});
+	init_select_target();
+
+	init_added_domains();
+
+    </script> 
+ </body>
+</html>

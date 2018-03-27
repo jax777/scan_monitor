@@ -1,0 +1,14 @@
+BeautifulSoup4==4.3.2
+python-nmap==0.6.1
+pymongo==3.1.1
+tornado
+gevent
+requests
+passivetotal
+paramiko
+dnspython
+python_ldap==2.4.27
+pysmb==1.1.19
+lxml
+passivetotal==1.0.23
+selenium
