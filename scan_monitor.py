@@ -310,7 +310,7 @@ def make_app():
         (r"/scan_again", scan_again),
         #(r"/send_to_brute", send_to_brute),
         #js css html
-        (r"/jaxknow", index),
+        (r"/index", index),
     ], **settings)
 
 

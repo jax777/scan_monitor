@@ -23,3 +23,10 @@ sudo docker run --name mongo -d -p 27017:27017 mongo --auth
 docker exec -it mongo mongo admin
 db.createUser({ user: 'username', pwd: 'passwd', roles: [ { role: "__system", db: "admin" } ] });
 ```
+
+# web管理界面
+
+
+### 运行scan_monitor.py， 访问 http://ip:8888/index
+
+![](./screenshot.png)
