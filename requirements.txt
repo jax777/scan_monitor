@@ -4,7 +4,6 @@ pymongo==3.1.1
 tornado
 gevent
 requests
-passivetotal
 paramiko
 dnspython
 python_ldap==2.4.27
